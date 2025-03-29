@@ -47,7 +47,7 @@ public class Menu {
                     System.out.println(flatService.findFlatByYear(year));
                     break;
                 case "6":
-                    System.out.print("Любой адрес в г.Новосибирске(формат: Советская, 62, Писарева, 35 и т.п.):  ");
+                    System.out.print("Адрес жилого дома в г.Новосибирске(формат: Советская, 62 и т.п.):  ");
                     String address = scanner2.nextLine();
                     System.out.println(flatService.findFlatByAddress(address));
                     break;
