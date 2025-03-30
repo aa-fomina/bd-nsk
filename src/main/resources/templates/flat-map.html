@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+</head>
+<body>
+
+<h3>Map of Houses</h3>
+<h5>Flats near metro (200m)</h5>
+<div id="map" style="height: 600px;"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<table id="data-table" hidden>
+
+    <tr th:each="flat : ${flat}">
+        <td th:text="${flat.id}"></td>
+        <td th:text="${flat.doma.oks.lat}"></td>
+        <td th:text="${flat.doma.oks.lon}"></td>
+    </tr>
+</table>
+<script>
+    function getDataFromTable(){
+        let data =[];
+        let table = document.getElementById('data-table');
+        let rows = table.getElementsByTagName('tr');
+        for (var i=0; i<rows.length;i++)
+        {
+            let cells = rows[i].getElementsByTagName('td');
+            let number = cells[0].innerText;
+            let lat = parseFloat(cells[1].innerText);
+            let lon = parseFloat(cells[2].innerText);
+            data.push({number: number, lat: lat, lon: lon});
+        }
+        return data;
+    }
+    let coordinates = getDataFromTable();
+
+
+
+    // Инициализация карты
+    var map = L.map('map').setView([55.0415, 82.9346], 10); // Укажите начальные координаты и уровень масштабирования
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 21,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    //
+    //     let flats = /*[[${flat}]]*/[];
+    //     console.log(flats);
+    // flats.forEach(function(flat)
+    //     {
+    //         let lat = flat.doma.oks.lat;
+    //         let lon = flat.doma.oks.lon;
+    //         L.marker([lat,lon]).addTo(map);
+    //     });
+    //
+    //     async function loadmark(){
+    //         const response = await fetch('flat');
+    //         const flat = await response.json();
+    //         flat.forEach(f=>{
+    //             let lat = f.doma.oks.lat;
+    //             let lon = f.doma.oks.lon;
+    //             L.marker([lat,lon]).addTo(map);
+    //         });
+    //     }
+    //     window.onload = loadmark;
+    // <tr th:each="flat : ${flat}">
+    //     alert(flat.room);
+    // </tr>
+    coordinates.forEach(coordinate =>{L.marker([coordinate.lat,coordinate.lon]).addTo(map)});
+
+</script>
+<!--<ul>-->
+<!--    <li th:each="flat : ${flat}">-->
+<!--        <span th:text="${flat.doma.oks.lat}"></span>-->
+<!--        <span th:text="${flat.doma.oks.lon}"></span>-->
+<!--    </li>-->
+
+<!--</ul>-->
+</body>
+</html>

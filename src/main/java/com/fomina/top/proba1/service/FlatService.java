@@ -33,6 +33,8 @@ public class FlatService {
             System.out.println(f);
         }
     }
+
+    public List<Flat> findAllMetro(int distance){return flatRepository.findFlatNearMetro(distance);}
     public List<Flat> findFlatByRoomNum(int room){return flatRepository.findByRoom(room); }
 
     public List<Flat> findFlatByYear(int year){return flatRepository.findByYear(year); }

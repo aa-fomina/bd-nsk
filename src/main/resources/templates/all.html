@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flats-list</title>
+</head>
+<body>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+        border-collapse: collapse;
+    }
+</style>
+<h2>Flats</h2>
+<table >
+
+    <th>Room</th>
+    <th>Address</th>
+    <th>Цена</th>
+
+    </tr>
+
+    <tr th:each="flat : ${flat}">
+        <td th:text="${flat.room}">Room</td>
+        <td th:text="${flat.doma.zh_address}">Address</td>
+        <td th:text="${flat.price}">Price</td>
+<!--        <td><a th:href="@{|/flat/${shop.id}|}">Посмотри меня</a></td>-->
+    </tr>
+</table>
+
+
+</body>
+</html>

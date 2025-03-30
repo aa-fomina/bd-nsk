@@ -2,82 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Flats</title>
 </head>
 <body>
-<h1>Map of Houses</h1>
-<div id="map" style="height: 600px;"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-<script>
-    // Инициализация карты
-    var map = L.map('map').setView([55.0415, 82.9346], 10); // Укажите начальные координаты и уровень масштабирования
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 21,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    //Получение данных о домах
-
-    // var houseId = 5; // Замените на нужный вам ID
-    // fetch(/oks/${houseId})
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         if (data) {
-    //             // Предполагается, что объект Oks содержит lat и lon
-    //             var lat = data.lat; // Замените на правильное имя поля
-    //             var lon = data.lon; // Замените на правильное имя поля
-    //
-    //             // Добавление маркера на карту
-    //             L.marker([lat, lon]).addTo(map);
-    //
-    //             // Центрируем карту на маркере
-    //             map.setView([lat, lon], 13);
-    //         } else {
-    //             console.error('House not found');
-    //         }
-    //     })
-    //     .catch(error => console.error('Error fetching house data:', error));
+<h1>All Flats</h1>
+<a href="/flat">Go to flats</a>
+<a href="/map-osm">Go to map</a>
 
 
-    // Функция для получения данных о доме и добавления маркера на карту
-    function loadHouseData(houseId) {
-        fetch(/oks/${houseId})
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json(); // Поскольку мы ожидаем JSON
-            })
-            .then(data => {
-                const lat = data.lat; // Предполагаем, что у вас есть поле latitude
-                const lon = data.lon; // Предполагаем, что у вас есть поле longitude
-
-                // Добавление маркера на карту
-                L.marker([lat, lon]).addTo(map);
-
-                    // Центрируем карту на маркере
-                    map.setView([lat, lon], 13);
-                    })
-                    .catch(error => console.error('Error fetching house data:', error));
-                    }
-
-                    // Замените 1 на нужный вам ID дома
-                    loadHouseData(5);
-
-
-
-
-//oks.forEach(oks =>{L.marker([oks.lat,oks.lon]).addTo(map)});
-//
-//      var okss =/*[[${/oks/${5}s}}]]*/ [];
-//      okss.forEach(function(okss) {L.marker([oks.lat, oks.lon]).addTo(map).bindPopup(oks.full_street)});
-
-
-
-</script>
 </body>
 </html>
